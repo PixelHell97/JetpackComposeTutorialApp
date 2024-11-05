@@ -1,5 +1,6 @@
 package com.pixel.restarttechnologyassignment.presentation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -28,8 +29,9 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabPosition
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -45,6 +47,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import com.pixel.restarttechnologyassignment.R
 import com.pixel.restarttechnologyassignment.presentation.component.ItemOralCard
 import com.pixel.restarttechnologyassignment.presentation.component.ItemQuizCardView
@@ -114,17 +117,18 @@ fun QuestionsScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        TabRow(
+        ScrollableTabRow(
             selectedTabIndex = selectedTabIndex,
             containerColor = Color.Transparent,
             contentColor = Color.Transparent,
+            edgePadding = 0.dp,
         ) {
             tabsList.forEachIndexed { index, tabItem ->
                 Tab(
                     modifier =
                         Modifier
-                            .wrapContentWidth(),
-                    // Only take the necessary width for the tabs
+                            .wrapContentWidth()
+                            .padding(horizontal = 26.dp),
                     selected = selectedTabIndex == index,
                     onClick = { selectedTabIndex = index },
                     selectedContentColor = Turquoise,
@@ -132,15 +136,21 @@ fun QuestionsScreen(modifier: Modifier = Modifier) {
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                         modifier = Modifier.padding(vertical = 16.dp),
                     ) {
                         Icon(imageVector = tabItem.icon, contentDescription = tabItem.name)
-                        Text(text = tabItem.name)
+                        Text(
+                            text = tabItem.name,
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
                     }
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         HorizontalPager(
             state = pagerState,
@@ -221,21 +231,52 @@ fun WritingPage(
     quizList: List<Quiz>,
     modifier: Modifier = Modifier,
 ) {
+    var selectedTaskTabIndex by remember { mutableIntStateOf(0) }
+    val tasks =
+        listOf(
+            "Task 1",
+            "Task 2",
+            "Task 3",
+        )
+    val indicator = @Composable { tabPositions: List<TabPosition> ->
+        CustomIndicator(tabPositions, selectedTaskTabIndex)
+    }
     Column(
         modifier = modifier.fillMaxSize(),
     ) {
+        ScrollableTabRow(
+            selectedTabIndex = selectedTaskTabIndex,
+            indicator = indicator,
+            edgePadding = 0.dp,
+        ) {
+            tasks.forEachIndexed { index, task ->
+                Tab(
+                    modifier = Modifier.zIndex(2f),
+                    text = { Text(
+                        text = task,
+                        color = if (selectedTaskTabIndex == index) Color.White else Color.Black,
+                    )
+                           },
+                    selected = selectedTaskTabIndex == index,
+                    onClick = {
+                        selectedTaskTabIndex = index
+                        // TODO: Update the task list with the selected task group
+                    },
+                )
+            }
+        }
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items(quizList) { quiz ->
                 ItemQuizCardView(
                     quiz = quiz,
-                    onClick = { /* TODO: Handle item click */ }
+                    onClick = { /* TODO: Handle item click */ },
                 )
             }
         }
@@ -248,7 +289,7 @@ fun OralPage(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
     ) {
         FilledTonalButton(
             onClick = { /* Should open the filter dialog */ },
