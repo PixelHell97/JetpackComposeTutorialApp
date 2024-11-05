@@ -1,6 +1,5 @@
-package com.pixel.restarttechnologyassignment.presentation
+package com.pixel.restarttechnologyassignment.presentation.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -47,8 +46,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.pixel.restarttechnologyassignment.R
+import com.pixel.restarttechnologyassignment.presentation.component.CustomIndicator
 import com.pixel.restarttechnologyassignment.presentation.component.ItemOralCard
 import com.pixel.restarttechnologyassignment.presentation.component.ItemQuizCardView
 import com.pixel.restarttechnologyassignment.presentation.component.oral
@@ -63,6 +64,7 @@ import com.pixel.restarttechnologyassignment.ui.theme.HeaderTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.LightTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.TextTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.Turquoise
+import com.pixel.restarttechnologyassignment.ui.theme.myFontFamily
 
 @Composable
 fun QuestionsScreen(modifier: Modifier = Modifier) {
@@ -104,7 +106,9 @@ fun QuestionsScreen(modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = "Questions",
-                style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
+                fontFamily = myFontFamily,
+                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp,
                 color = HeaderTurquoise,
             )
 
@@ -121,6 +125,7 @@ fun QuestionsScreen(modifier: Modifier = Modifier) {
             selectedTabIndex = selectedTabIndex,
             containerColor = Color.Transparent,
             contentColor = Color.Transparent,
+            divider = {},
             edgePadding = 0.dp,
         ) {
             tabsList.forEachIndexed { index, tabItem ->
@@ -142,8 +147,7 @@ fun QuestionsScreen(modifier: Modifier = Modifier) {
                         Icon(imageVector = tabItem.icon, contentDescription = tabItem.name)
                         Text(
                             text = tabItem.name,
-                            style = MaterialTheme.typography.bodyMedium,
-                            fontWeight = FontWeight.Bold,
+                            fontFamily = myFontFamily,
                         )
                     }
                 }
@@ -201,8 +205,9 @@ fun SortMenu(itemsList: List<String>) {
         Text(
             text = "View As: $selectedSort",
             color = TextTurquoise,
-            fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.bodySmall,
+            fontSize = 10.sp,
+            fontFamily = myFontFamily,
+            fontWeight = FontWeight.Medium,
         )
         Icon(
             imageVector = if (expended) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
@@ -247,16 +252,18 @@ fun WritingPage(
         ScrollableTabRow(
             selectedTabIndex = selectedTaskTabIndex,
             indicator = indicator,
+            divider = {},
             edgePadding = 0.dp,
         ) {
             tasks.forEachIndexed { index, task ->
                 Tab(
                     modifier = Modifier.zIndex(2f),
-                    text = { Text(
-                        text = task,
-                        color = if (selectedTaskTabIndex == index) Color.White else Color.Black,
-                    )
-                           },
+                    text = {
+                        Text(
+                            text = task,
+                            color = if (selectedTaskTabIndex == index) Color.White else Color.Black,
+                        )
+                    },
                     selected = selectedTaskTabIndex == index,
                     onClick = {
                         selectedTaskTabIndex = index

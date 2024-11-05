@@ -25,17 +25,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.pixel.restarttechnologyassignment.presentation.models.Partner
 import com.pixel.restarttechnologyassignment.ui.generatedIcons.MyIconPack
 import com.pixel.restarttechnologyassignment.ui.generatedIcons.myiconpack.`Birthday-cake`
 import com.pixel.restarttechnologyassignment.ui.generatedIcons.myiconpack.Calendar
 import com.pixel.restarttechnologyassignment.ui.generatedIcons.myiconpack.Female
 import com.pixel.restarttechnologyassignment.ui.generatedIcons.myiconpack.Male
+import com.pixel.restarttechnologyassignment.ui.theme.HeaderTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.LightTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.TextTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.Turquoise
+import com.pixel.restarttechnologyassignment.ui.theme.myFontFamily
 
 @Composable
 fun ItemPartner(
@@ -51,7 +55,7 @@ fun ItemPartner(
                 .padding(8.dp),
         elevation = CardDefaults.cardElevation(6.dp),
         onClick = onClick,
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
     ) {
         Column(
             modifier =
@@ -70,15 +74,20 @@ fun ItemPartner(
                     ) {
                         Text(
                             text = partner.name,
-                            style = MaterialTheme.typography.headlineMedium,
+                            fontFamily = myFontFamily,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp,
+                            color = TextTurquoise,
                         )
 
                         Spacer(modifier = Modifier.width(8.dp))
 
                         Text(
                             text = "Targeting: ${partner.targetingLevel}",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = LightTurquoise, // Teal shade for Targeting label
+                            fontFamily = myFontFamily,
+                            fontWeight = FontWeight.Medium,
+                            fontSize = 12.sp,
+                            color = LightTurquoise,
                             modifier =
                                 Modifier
                                     .background(Turquoise, shape = RoundedCornerShape(3.dp))
@@ -89,7 +98,9 @@ fun ItemPartner(
                     // Last Seen
                     Text(
                         text = "Last seen online: ${partner.lastSeen}",
-                        style = MaterialTheme.typography.bodyMedium,
+                        fontFamily = myFontFamily,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 12.sp,
                         color = Color.Gray,
                     )
 
@@ -139,8 +150,10 @@ fun ProfileIcon(
         if (profilePicture == null) {
             Text(
                 text = name.split(" ").joinToString("") { it.first().toString() },
+                fontFamily = myFontFamily,
+                fontWeight = FontWeight.Medium,
+                fontSize = 16.sp,
                 color = Color.White,
-                style = MaterialTheme.typography.bodySmall,
             )
         } else {
             Icon(
@@ -165,6 +178,9 @@ fun LanguageChip(language: String) {
         Text(
             text = language,
             style = MaterialTheme.typography.bodyMedium,
+            fontFamily = myFontFamily,
+            fontWeight = FontWeight.Medium,
+            fontSize = 12.sp,
             color = TextTurquoise,
         )
     }
@@ -185,7 +201,9 @@ fun InfoWithIcon(
         Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = info,
-            style = MaterialTheme.typography.bodyMedium,
+            fontFamily = myFontFamily,
+            fontWeight = FontWeight.Medium,
+            fontSize = 12.sp,
             color = Color.Gray,
         )
     }

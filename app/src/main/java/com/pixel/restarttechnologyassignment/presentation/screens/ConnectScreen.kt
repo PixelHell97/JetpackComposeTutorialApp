@@ -1,4 +1,4 @@
-package com.pixel.restarttechnologyassignment.presentation
+package com.pixel.restarttechnologyassignment.presentation.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,6 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.pixel.restarttechnologyassignment.R
 import com.pixel.restarttechnologyassignment.presentation.component.ItemPartner
 import com.pixel.restarttechnologyassignment.presentation.component.partner
@@ -39,6 +40,7 @@ import com.pixel.restarttechnologyassignment.presentation.models.Partner
 import com.pixel.restarttechnologyassignment.ui.theme.Gray
 import com.pixel.restarttechnologyassignment.ui.theme.HeaderTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.Turquoise
+import com.pixel.restarttechnologyassignment.ui.theme.myFontFamily
 
 @Composable
 fun ConnectScreen(modifier: Modifier = Modifier) {
@@ -80,10 +82,18 @@ fun ConnectScreen(modifier: Modifier = Modifier) {
             selectedTabIndex = selectedTabIndex,
             containerColor = Color.Transparent,
             contentColor = Color.Transparent,
+            divider = {},
         ) {
             tabsList.forEachIndexed { index, title ->
                 Tab(
-                    text = { Text(text = title) },
+                    text = {
+                        Text(
+                            text = title,
+                            fontFamily = myFontFamily,
+                            fontWeight = if (selectedTabIndex == index) FontWeight.Bold else FontWeight.Medium,
+                            fontSize = 16.sp,
+                        )
+                    },
                     selected = selectedTabIndex == index,
                     onClick = { selectedTabIndex = index },
                     selectedContentColor = Turquoise,
@@ -133,8 +143,9 @@ fun SuggestionsPage(
         ) {
             Text(
                 text = "Suggested Study Partners:",
+                fontFamily = myFontFamily,
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.bodyLarge,
+                fontSize = 16.sp,
                 color = HeaderTurquoise,
             )
 
@@ -171,7 +182,7 @@ fun ChatPage(modifier: Modifier = Modifier) {
         Text(
             text = "You have no chat yet",
             style = MaterialTheme.typography.headlineMedium,
-            color = Gray
+            color = Gray,
         )
     }
 }

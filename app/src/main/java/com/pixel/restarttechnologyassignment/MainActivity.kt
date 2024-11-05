@@ -14,13 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.pixel.restarttechnologyassignment.presentation.ConnectScreen
-import com.pixel.restarttechnologyassignment.presentation.HomeScreen
-import com.pixel.restarttechnologyassignment.presentation.ProfileScreen
-import com.pixel.restarttechnologyassignment.presentation.QuestionsScreen
-import com.pixel.restarttechnologyassignment.presentation.ToolsScreen
 import com.pixel.restarttechnologyassignment.presentation.component.BottomNavBar
 import com.pixel.restarttechnologyassignment.presentation.models.BottomNavItem
+import com.pixel.restarttechnologyassignment.presentation.screens.ConnectScreen
+import com.pixel.restarttechnologyassignment.presentation.screens.HomeScreen
+import com.pixel.restarttechnologyassignment.presentation.screens.ProfileScreen
+import com.pixel.restarttechnologyassignment.presentation.screens.QuestionsScreen
+import com.pixel.restarttechnologyassignment.presentation.screens.ToolsScreen
 import com.pixel.restarttechnologyassignment.presentation.tutorial.TutorialOverlay
 import com.pixel.restarttechnologyassignment.ui.theme.RestartTechnologyAssignmentTheme
 
