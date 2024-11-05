@@ -4,13 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -21,7 +22,6 @@ import com.pixel.restarttechnologyassignment.presentation.screens.HomeScreen
 import com.pixel.restarttechnologyassignment.presentation.screens.ProfileScreen
 import com.pixel.restarttechnologyassignment.presentation.screens.QuestionsScreen
 import com.pixel.restarttechnologyassignment.presentation.screens.ToolsScreen
-import com.pixel.restarttechnologyassignment.presentation.tutorial.TutorialOverlay
 import com.pixel.restarttechnologyassignment.ui.theme.RestartTechnologyAssignmentTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RestartTechnologyAssignmentTheme {
-                val showTutorial by remember { mutableStateOf(false) }
+                // val showTutorial by remember { mutableStateOf(SharedPreferencesManager(this).isFirstLaunch) }
                 val navController = rememberNavController()
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -39,7 +39,10 @@ class MainActivity : ComponentActivity() {
                     NavHost(
                         navController = navController,
                         startDestination = BottomNavItem.Home.route,
-                        modifier = Modifier.padding(innerPadding),
+                        modifier =
+                            Modifier
+                                .background(Color.White)
+                                .padding(innerPadding),
                     ) {
                         composable(BottomNavItem.Home.route) {
                             HomeScreen()
@@ -57,9 +60,11 @@ class MainActivity : ComponentActivity() {
                             ProfileScreen()
                         }
                     }
-                    if (showTutorial) {
-                        TutorialOverlay()
-                    }
+//                    if (showTutorial) {
+//                        TutorialOverlay(onDismiss = {
+//                            SharedPreferencesManager(this).isFirstLaunch = false
+//                        })
+//                    }
                 }
             }
         }

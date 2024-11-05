@@ -1,5 +1,7 @@
 package com.pixel.restarttechnologyassignment.ui.theme
 
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)
@@ -14,3 +16,4 @@ val LightTurquoise = Color(0xFFDDFBFB)
 val TextTurquoise = Color(0xFF0F5252)
 val HeaderTurquoise = Color(0xFF188888)
 val Gray = Color(0xFF9CA3AF)
+
