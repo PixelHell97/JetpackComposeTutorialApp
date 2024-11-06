@@ -32,7 +32,7 @@ import com.pixel.restarttechnologyassignment.ui.generatedIcons.MyIconPack
 import com.pixel.restarttechnologyassignment.ui.generatedIcons.myiconpack.Page
 
 @Composable
-fun ItemOralCard(
+fun OralCardView(
     oral: Oral,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -137,7 +137,7 @@ fun TagChip(tag: String) {
 @Preview(showBackground = true)
 @Composable
 private fun OralCardPrev() {
-    ItemOralCard(
+    OralCardView(
         oral = oral,
         onClick = {},
     )

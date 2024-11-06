@@ -15,5 +15,17 @@ val Turquoise = Color(0xFF21B6B6)
 val LightTurquoise = Color(0xFFDDFBFB)
 val TextTurquoise = Color(0xFF0F5252)
 val HeaderTurquoise = Color(0xFF188888)
-val Gray = Color(0xFF9CA3AF)
+val Gray = Color(0xff9ca3af)
 
+val BackgroundColor =
+    Brush.linearGradient(
+        colorStops =
+            arrayOf(
+                0.0f to LightTurquoise,
+                0.2f to Color.White,
+                0.8f to Color.White,
+                1.0f to LightTurquoise,
+            ),
+        start = Offset(1200.0f, 0.0f),
+        end = Offset(0.0f, 2500.0f),
+    )

@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.pixel.restarttechnologyassignment"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.pixel.restarttechnologyassignment"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -52,6 +52,9 @@ dependencies {
 
     // navigation
     implementation(libs.androidx.navigation.compose)
+
+    // highlight
+    implementation(libs.androidx.animation)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

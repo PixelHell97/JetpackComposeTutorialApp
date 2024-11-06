@@ -35,14 +35,13 @@ import com.pixel.restarttechnologyassignment.ui.generatedIcons.myiconpack.`Birth
 import com.pixel.restarttechnologyassignment.ui.generatedIcons.myiconpack.Calendar
 import com.pixel.restarttechnologyassignment.ui.generatedIcons.myiconpack.Female
 import com.pixel.restarttechnologyassignment.ui.generatedIcons.myiconpack.Male
-import com.pixel.restarttechnologyassignment.ui.theme.HeaderTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.LightTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.TextTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.Turquoise
 import com.pixel.restarttechnologyassignment.ui.theme.myFontFamily
 
 @Composable
-fun ItemPartner(
+fun PartnerCardView(
     partner: Partner,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -55,7 +54,7 @@ fun ItemPartner(
                 .padding(8.dp),
         elevation = CardDefaults.cardElevation(6.dp),
         onClick = onClick,
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
     ) {
         Column(
             modifier =
@@ -212,7 +211,7 @@ fun InfoWithIcon(
 @Preview(showBackground = true)
 @Composable
 private fun PartnerPrev() {
-    ItemPartner(
+    PartnerCardView(
         partner = partner,
         onClick = {},
     )

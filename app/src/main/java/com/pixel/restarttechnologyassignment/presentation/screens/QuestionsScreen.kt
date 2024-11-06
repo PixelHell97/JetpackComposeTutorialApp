@@ -1,5 +1,6 @@
 package com.pixel.restarttechnologyassignment.presentation.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -50,8 +51,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.pixel.restarttechnologyassignment.R
 import com.pixel.restarttechnologyassignment.presentation.component.CustomIndicator
-import com.pixel.restarttechnologyassignment.presentation.component.ItemOralCard
-import com.pixel.restarttechnologyassignment.presentation.component.ItemQuizCardView
+import com.pixel.restarttechnologyassignment.presentation.component.OralCardView
+import com.pixel.restarttechnologyassignment.presentation.component.QuizCardView
 import com.pixel.restarttechnologyassignment.presentation.component.oral
 import com.pixel.restarttechnologyassignment.presentation.component.quiz
 import com.pixel.restarttechnologyassignment.presentation.models.Oral
@@ -96,8 +97,7 @@ fun QuestionsScreen(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.Start,
         modifier =
             modifier
-                .padding(16.dp)
-                .fillMaxSize(),
+                .padding(16.dp),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -213,20 +213,23 @@ fun SortMenu(itemsList: List<String>) {
             imageVector = if (expended) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
             contentDescription = "Sort",
         )
-    }
 
-    DropdownMenu(
-        expanded = expended,
-        onDismissRequest = { expended = false },
-    ) {
-        itemsList.forEach { item ->
-            DropdownMenuItem(
-                text = { Text(text = item) },
-                onClick = {
-                    selectedSort = item
-                    expended = false
-                },
-            )
+        Spacer(modifier = Modifier.size(8.dp))
+
+        DropdownMenu(
+            expanded = expended,
+            onDismissRequest = { expended = false },
+            modifier = Modifier.wrapContentWidth().background(Color.White),
+        ) {
+            itemsList.forEach { item ->
+                DropdownMenuItem(
+                    text = { Text(text = item) },
+                    onClick = {
+                        selectedSort = item
+                        expended = false
+                    },
+                )
+            }
         }
     }
 }
@@ -254,6 +257,8 @@ fun WritingPage(
             indicator = indicator,
             divider = {},
             edgePadding = 0.dp,
+            containerColor = Color.Transparent,
+            contentColor = Color.Transparent,
         ) {
             tasks.forEachIndexed { index, task ->
                 Tab(
@@ -281,7 +286,8 @@ fun WritingPage(
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items(quizList) { quiz ->
-                ItemQuizCardView(
+
+                QuizCardView(
                     quiz = quiz,
                     onClick = { /* TODO: Handle item click */ },
                 )
@@ -302,7 +308,9 @@ fun OralPage(
             onClick = { /* Should open the filter dialog */ },
             colors = ButtonDefaults.filledTonalButtonColors(containerColor = LightTurquoise),
             shape = MaterialTheme.shapes.small,
-            modifier = Modifier.padding(6.dp),
+            modifier =
+                Modifier
+                    .padding(6.dp),
         ) {
             Text(
                 text = "Filter",
@@ -322,7 +330,7 @@ fun OralPage(
 
         LazyColumn {
             items(oralList) { oral ->
-                ItemOralCard(
+                OralCardView(
                     oral = oral,
                     onClick = { /* TODO: Handle item click */ },
                 )

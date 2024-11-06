@@ -1,15 +1,19 @@
 package com.pixel.restarttechnologyassignment.presentation.component
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.pixel.restarttechnologyassignment.presentation.models.BottomNavItem
@@ -27,8 +31,11 @@ fun BottomNavBar(navController: NavController) {
             BottomNavItem.Tools,
             BottomNavItem.Profile,
         )
-    NavigationBar {
-        bottomNavItems.forEach { item ->
+
+    NavigationBar(
+        containerColor = Color.White,
+    ) {
+        bottomNavItems.forEachIndexed { index, item ->
             NavigationBarItem(
                 icon = {
                     Icon(
@@ -36,7 +43,7 @@ fun BottomNavBar(navController: NavController) {
                         contentDescription = item.label,
                     )
                 },
-                label = { Text(text = item.label) },
+                label = { Text(text = item.label, style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp)) },
                 selected =
                     navController
                         .currentBackStackEntryAsState()
@@ -60,6 +67,7 @@ fun BottomNavBar(navController: NavController) {
                         disabledTextColor = Gray,
                         selectedIndicatorColor = Color.Transparent,
                     ),
+                // modifier = Modifier.highlightor(index = 0, description = "Hello"),
             )
         }
     }

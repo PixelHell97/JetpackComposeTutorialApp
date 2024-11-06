@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -27,7 +26,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pixel.restarttechnologyassignment.presentation.component.ItemPlan
+import com.pixel.restarttechnologyassignment.presentation.component.PlanCardView
 import com.pixel.restarttechnologyassignment.presentation.component.planList
 import com.pixel.restarttechnologyassignment.presentation.models.Plan
 import com.pixel.restarttechnologyassignment.ui.theme.HeaderTurquoise
@@ -38,7 +37,7 @@ import com.pixel.restarttechnologyassignment.ui.theme.myFontFamily
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier.fillMaxSize().padding(8.dp),
+        modifier = modifier.padding(8.dp),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -113,7 +112,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 fun PlansList(plansList: List<Plan>) {
     LazyColumn {
         items(plansList) { plan ->
-            ItemPlan(
+            PlanCardView(
                 plan = plan,
                 isLastItem = plansList.last() == plan,
                 onClick = {

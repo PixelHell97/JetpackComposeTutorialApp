@@ -34,7 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pixel.restarttechnologyassignment.R
-import com.pixel.restarttechnologyassignment.presentation.component.ItemPartner
+import com.pixel.restarttechnologyassignment.presentation.component.PartnerCardView
 import com.pixel.restarttechnologyassignment.presentation.component.partner
 import com.pixel.restarttechnologyassignment.presentation.models.Partner
 import com.pixel.restarttechnologyassignment.ui.theme.Gray
@@ -64,10 +64,7 @@ fun ConnectScreen(modifier: Modifier = Modifier) {
     }
     Column(
         horizontalAlignment = Alignment.Start,
-        modifier =
-            modifier
-                .padding(16.dp)
-                .fillMaxSize(),
+        modifier = modifier.padding(16.dp),
     ) {
         Text(
             text = "Connect",
@@ -162,7 +159,7 @@ fun SuggestionsPage(
         }
         LazyColumn {
             items(partnersList) { partner ->
-                ItemPartner(
+                PartnerCardView(
                     partner = partner,
                     onClick = { /* TODO: Handle item click */ },
                 )

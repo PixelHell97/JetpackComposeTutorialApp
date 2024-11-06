@@ -13,10 +13,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,7 +32,7 @@ import com.pixel.restarttechnologyassignment.ui.theme.LightTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.myFontFamily
 
 @Composable
-fun ItemPlan(
+fun PlanCardView(
     plan: Plan,
     isLastItem: Boolean,
     onClick: (plan: Plan) -> Unit,
@@ -147,7 +145,7 @@ fun ItemPlan(
 private fun ItemPlanPrev() {
     Column {
         planList.forEach { plan ->
-            ItemPlan(
+            PlanCardView(
                 plan = plan,
                 isLastItem = planList.last() == plan,
                 onClick = { /* TODO: Handle item click */ },

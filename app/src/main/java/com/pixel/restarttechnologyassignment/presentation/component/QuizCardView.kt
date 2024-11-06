@@ -33,7 +33,7 @@ import com.pixel.restarttechnologyassignment.ui.theme.LightTurquoise
 import com.pixel.restarttechnologyassignment.ui.theme.TextTurquoise
 
 @Composable
-fun ItemQuizCardView(
+fun QuizCardView(
     quiz: Quiz,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -114,7 +114,7 @@ fun ItemQuizCardView(
 @Preview(showBackground = true)
 @Composable
 private fun QuizCardPrev() {
-    ItemQuizCardView(
+    QuizCardView(
         quiz = quiz,
         onClick = {},
     )
