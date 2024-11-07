@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.pixel.restarttechnologyassignment"
+    namespace = "com.pixel.jetpackcomposetutorialapp"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.pixel.restarttechnologyassignment"
+        applicationId = "com.pixel.jetpackcomposetutorialapp"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
